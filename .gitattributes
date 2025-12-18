@@ -1,3 +1,4 @@
 # **/@mf-types/*.d.ts linguist-generated=true
 app1/@mf-types/app2/_types/Button.d.ts binary
 **/@mf-types/* binary
+*.d.ts binary
