@@ -2,10 +2,17 @@
   "name": "typescript_app2",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "start": "NODE_ENV=development webpack-cli serve",
+    "build": "webpack --mode production",
+    "serve": "serve dist -p 3002",
+    "clean": "rm -rf dist"
+  },
   "devDependencies": {
     "@babel/core": "7.24.7",
     "@babel/preset-react": "7.24.7",
     "@babel/preset-typescript": "7.24.7",
+    "@module-federation/enhanced": "^0.21.6",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "babel-loader": "9.1.3",
@@ -16,14 +23,7 @@
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "5.0.4"
   },
-  "scripts": {
-    "start": "webpack-cli serve",
-    "build": "webpack --mode production",
-    "serve": "serve dist -p 3002",
-    "clean": "rm -rf dist"
-  },
   "dependencies": {
-    "@module-federation/typescript": "3.1.3",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   }

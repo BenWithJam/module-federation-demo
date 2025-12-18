@@ -1,12 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { FederatedTypesPlugin } = require('@module-federation/typescript');
-const { container } = require('webpack');
-const { ModuleFederationPlugin } = container;
+const { ModuleFederationPlugin } = require('@module-federation/enhanced');
 const path = require('path');
 
 const pkg = require('./package.json');
 
-module.exports = {
+module.exports = (env) => ({
   entry: './src/index',
   mode: 'development',
   devServer: {
@@ -21,7 +19,8 @@ module.exports = {
     port: 3002,
   },
   output: {
-    publicPath: 'auto',
+    // publicPath: 'auto',
+    publicPath: 'http://localhost:3002/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -45,47 +44,34 @@ module.exports = {
       exposes: {
         './Button': './src/Button',
       },
-      shared: [
-        {
-          react: {
-            singleton: true,
-            requiredVersion: pkg.dependencies.react,
-          },
-        },
-        {
-          'react-dom': {
-            singleton: true,
-            requiredVersion: pkg.dependencies['react-dom'],
-          },
-        },
-      ],
-    }),
-    new FederatedTypesPlugin({
-      disableDownloadingRemoteTypes: true,
-      federationConfig: {
-        name: 'app2',
-        filename: 'remoteEntry.js',
-        exposes: {
-          './Button': './src/Button',
-        },
-        shared: [
-          {
-            react: {
-              singleton: true,
-              requiredVersion: pkg.dependencies.react,
-            },
-          },
-          {
-            'react-dom': {
-              singleton: true,
-              requiredVersion: pkg.dependencies['react-dom'],
-            },
-          },
-        ],
+      shared: {
+        ...pkg.dependencies
       },
+      dev: {
+        disableLiveReload: false,
+        disableHotTypesReload: false,
+      },
+      dts: {
+        extractRemoteTypes: true,
+        extractThirdParty: true,
+      }
+
     }),
+    // new FederatedTypesPlugin({
+    //   disableDownloadingRemoteTypes: env.WEBPACK_BUILD,
+    //   federationConfig: {
+    //     name: 'app2',
+    //     filename: 'remoteEntry.js',
+    //     exposes: {
+    //       './Button': './src/Button',
+    //     },
+    //     shared: {
+    //       ...pkg.dependencies
+    //     },
+    //   },
+    // }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
   ],
-};
+});
