@@ -1,7 +1,7 @@
 import React from 'react';
 
 type ButtonProps = {
-  size: 'small' | 'large';
+  size: 'small' | 'large' | 'huge'
 };
 const Button: React.FC<ButtonProps> = ({ size }) => {
   if (size === 'large') {
