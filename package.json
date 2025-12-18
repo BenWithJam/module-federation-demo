@@ -1,0 +1,16 @@
+{
+  "name": "typescript-repo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "This example demos a basic host/remote application with TypeScript and also streams types.",
+  "scripts": {
+    "start": "pnpm --filter typescript_* --parallel start",
+    "build": "pnpm --filter typescript_* build",
+    "serve": "pnpm --filter typescript_* --parallel serve",
+    "clean": "pnpm --filter typescript_* --parallel clean"
+  },
+  "devDependencies": {
+    "axios": "1.13.2",
+    "typescript": "5.5.3"
+  }
+}
