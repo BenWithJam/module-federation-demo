@@ -1,7 +1,7 @@
 import React from 'react';
 
 type ButtonProps = {
-  size: 'small' | 'large';
+  size: 'small' | 'large' | 'verylarge';
   label: string;
 };
 const Button: React.FC<ButtonProps> = ({ size, label }) => {
