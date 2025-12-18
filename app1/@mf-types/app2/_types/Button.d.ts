@@ -1,6 +1,5 @@
-import React from 'react';
 type ButtonProps = {
-  size: 'small' | 'large';
+    size: 'small' | 'large' | 'huge';
 };
-declare const Button: React.FC<ButtonProps>;
+declare const Button: ({ size }: ButtonProps) => import("react/jsx-runtime").JSX.Element;
 export default Button;
