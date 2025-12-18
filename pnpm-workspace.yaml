@@ -1,3 +1,4 @@
 packages:
   - "app1"
   - "app2"
+  - "shared/*"
