@@ -1,5 +1,5 @@
 import React, { type ReactNode } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 
 import { ErrorBoundary } from './boundary';
 
@@ -71,12 +71,16 @@ export const mount = (
   return {
     render: (children: ReactNode) => {
       root.render(
-        <ErrorBoundary fallback={fallback}>
-          <QueryClientProvider client={client}>
-            <span>Hello from Mount</span>
-            {children}
-          </QueryClientProvider>
-        </ErrorBoundary>,
+        <>
+          <React.Suspense fallback={<span>Loading...</span>}>
+            <ErrorBoundary fallback={fallback}>
+              {/* <QueryClientProvider client={client}> */}
+              <span>Hello from Mount</span>
+              {children}
+              {/* </QueryClientProvider> */}
+            </ErrorBoundary>
+          </React.Suspense>
+        </>,
       );
     },
     unmount: () => {

@@ -1,7 +1,8 @@
 {
   "name": "utils",
   "exports": {
-    "./remoteLoader": "./remoteLoader.js"
+    "./remoteLoader": "./remoteLoader.js",
+    "./runtimePlugin": "./runtimePlugin.js"
   },
   "devDependencies": {
     "@types/react": "18.3.3",

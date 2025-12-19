@@ -21,8 +21,8 @@ module.exports = (env) => ({
     port: 3001,
   },
   output: {
-    // publicPath: 'auto',
-    publicPath: 'http://localhost:3001/',
+    publicPath: 'auto',
+    // publicPath: 'http://localhost:3001/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -71,13 +71,24 @@ module.exports = (env) => ({
       name: 'app1',
       filename: 'remoteEntry.js',
       remotes: {
+        app2: 'app2@http://localhost:3002/remoteEntry.js',
         // TODO: set this up for prod with remoteLoader as well
         // app2: localLoader('app2', 'http://localhost:3002')
-        app2: 'app2@http://localhost:3002/remoteEntry.js',
       },
-      shared: {
-        ...pkg.dependencies
-      },
+      // shared: {
+      //   // ...pkg.dependencies,
+      //   'react': {
+      //     eager: true,
+      //     singleton: true,
+      //     requiredVersion: '18.3.1'
+      //   },
+      //   'react-dom': {
+      //     eager: true,
+      //     singleton: true,
+      //     requiredVersion: '18.3.1'
+      //   }
+
+      // },
     }),
     // new FederatedTypesPlugin({
     //   disableDownloadingRemoteTypes: env.WEBPACK_BUILD,

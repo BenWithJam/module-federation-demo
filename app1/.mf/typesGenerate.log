@@ -1,0 +1,37 @@
+[2025-12-18T23:59:43.952] [INFO] forkDevWorker - ChildProcess(45843), message: {"type":"mf_call","id":"9f53fb9a-6cfd-4c6d-93d9-9c2c265a9a9a","args":[{"name":"app1","remote":{"context":"/Users/benbwkz/Desktop/monorepo2/app1","outputDir":"","moduleFederationConfig":{"name":"app1","filename":"remoteEntry.js","remotes":{"app2":"app2@http://localhost:3002/remoteEntry.js"},"runtimePlugins":["/Users/benbwkz/Desktop/monorepo2/node_modules/.pnpm/@module-federation+dts-plugin@0.21.6_typescript@5.5.3/node_modules/@module-federation/dts-plugin/dist/dynamic-remote-type-hints-plugin.js"]},"hostRemoteTypesFolder":"@mf-types","compileInChildProcess":true,"typesFolder":".dev-server"},"host":{"context":"/Users/benbwkz/Desktop/monorepo2/app1","moduleFederationConfig":{"name":"app1","filename":"remoteEntry.js","remotes":{"app2":"app2@http://localhost:3002/remoteEntry.js"},"runtimePlugins":["/Users/benbwkz/Desktop/monorepo2/node_modules/.pnpm/@module-federation+dts-plugin@0.21.6_typescript@5.5.3/node_modules/@module-federation/dts-plugin/dist/dynamic-remote-type-hints-plugin.js"]},"typesFolder":"@mf-types","abortOnError":false,"consumeAPITypes":true},"extraOptions":{},"disableLiveReload":false,"disableHotTypesReload":false}]} 
+[2025-12-18T23:59:43.964] [INFO] Module Federation DTS - Publisher:app1 Trying to connect to ws://192.168.1.208:16322...
+[2025-12-18T23:59:43.963] [INFO] forkDevWorker - app1 module generateTypes done, localServerAddress:  http://192.168.1.208:58208
+[2025-12-18T23:59:43.968] [INFO] Module Federation DTS - Current pid: 45843, publisher:app1 connected to ws://192.168.1.208:16322, starting service...
+[2025-12-18T23:59:43.969] [INFO] Module Federation DTS - remote module:app2 trying to connect to  ws://192.168.1.208:16322...
+[2025-12-18T23:59:43.971] [INFO] Module Federation DTS - Current pid: 45843 remote module: app2 connected to ws://192.168.1.208:16322, starting service...
+[2025-12-18T23:59:43.974] [WARN] Module Federation DTS - [_updateSubscriber] run, options: {
+  "remoteTypeTarPath": "http://192.168.1.208:58187/@mf-types.zip",
+  "name": "app2",
+  "updateKind": "UPDATE_TYPE",
+  "updateMode": "PASSIVE",
+  "updateSourcePaths": [
+    "app2"
+  ]
+}
+[2025-12-18T23:59:43.974] [INFO] Module Federation DTS - [_updateSubscriber] run, updateSourcePaths:app2, current module:app1, update start...
+[2025-12-18T23:59:43.975] [INFO] forkDevWorker - sync remote module app2, types to app1,typesManager.updateTypes run
+[2025-12-18T23:59:43.975] [INFO] Module Federation DTS - update run, app1 module update, updateKind: RELOAD_PAGE, updateMode: PASSIVE, updateSourcePaths: undefined
+[2025-12-18T23:59:43.975] [INFO] updateTypes - options: {
+  "updateMode": "PASSIVE",
+  "remoteName": "app2",
+  "remoteTarPath": "http://192.168.1.208:58187/@mf-types.zip"
+};
+hostName: app1
+[2025-12-18T23:59:43.976] [INFO] updateTypes - loadedRemoteInfo: undefined
+[2025-12-18T23:59:43.976] [INFO] updateTypes - remoteInfo: {
+  "name": "app2",
+  "url": "http://localhost:3002/remoteEntry.js",
+  "zipUrl": "http://localhost:3002/@mf-types.zip",
+  "apiTypeUrl": "http://localhost:3002/@mf-types.d.ts",
+  "alias": "app2"
+}
+[2025-12-18T23:59:43.976] [INFO] updateTypes - consumeTypes start
+[2025-12-18T23:59:43.985] [INFO] downloadTypesArchive - zip.extractAllTo success destinationPath: /Users/benbwkz/Desktop/monorepo2/app1/@mf-types/app2; url: http://192.168.1.208:58187/@mf-types.zip
+[2025-12-18T23:59:43.991] [INFO] downloadAPITypes - success
+[2025-12-18T23:59:43.991] [INFO] updateTypes - consumeTypes end
+[2025-12-18T23:59:43.991] [INFO] Module Federation DTS - [_updateSubscriber] run, updateSourcePaths:app2,app1, update publisher app1 start...

@@ -10,7 +10,7 @@ module.exports = (env) => ({
   devServer: {
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, ONS',
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
     },
     static: {
@@ -19,8 +19,8 @@ module.exports = (env) => ({
     port: 3002,
   },
   output: {
-    // publicPath: 'auto',
-    publicPath: 'http://localhost:3002/',
+    publicPath: 'auto',
+    // publicPath: 'http://localhost:3002/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -44,17 +44,19 @@ module.exports = (env) => ({
       exposes: {
         './Button': './src/Button',
       },
-      shared: {
-        ...pkg.dependencies
-      },
-      dev: {
-        disableLiveReload: false,
-        disableHotTypesReload: false,
-      },
-      dts: {
-        extractRemoteTypes: true,
-        extractThirdParty: true,
-      }
+      // shared: {
+      //   // ...pkg.dependencies,
+      //   'react': {
+      //     eager: true,
+      //     singleton: true,
+      //     requiredVersion: '18.3.1'
+      //   },
+      //   'react-dom': {
+      //     eager: true,
+      //     singleton: true,
+      //     requiredVersion: '18.3.1'
+      //   }
+      // },
 
     }),
     // new FederatedTypesPlugin({

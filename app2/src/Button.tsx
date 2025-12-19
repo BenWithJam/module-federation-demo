@@ -1,10 +1,9 @@
 import React from 'react';
 
 type ButtonProps = {
-  size: 'small' | 'large' | 'verylarge';
-  label: string;
+  size: 'small' | 'large' | 'huge';
 };
-const Button: React.FC<ButtonProps> = ({ size, label }) => {
+const Button: React.FC<ButtonProps> = ({ size }) => {
   if (size === 'large') {
     return (
       <button
@@ -13,7 +12,7 @@ const Button: React.FC<ButtonProps> = ({ size, label }) => {
           alert('clicked large');
         }}
       >
-        App2 {label}
+        App2 Large Button
       </button>
     );
   }

@@ -115,6 +115,9 @@ importers:
       typescript:
         specifier: 5.5.3
         version: 5.5.3
+      utils:
+        specifier: workspace:*
+        version: link:../shared/utils
       webpack:
         specifier: 5.101.0
         version: 5.101.0(webpack-cli@5.1.4)
