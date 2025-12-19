@@ -6,10 +6,7 @@ const package = require('./package.json');
 module.exports = (env) => buildWebpackConfig({
   env,
   package,
-  module: modules.app2,
-  remotes: {
-    ...modules.library.remote(env),
-  },
+  module: modules.library,
   exposes: {
     './Button': './src/Button'
   }

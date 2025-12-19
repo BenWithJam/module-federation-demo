@@ -12,6 +12,12 @@ const modules = {
     name: 'app2',
     path: '/js/app2',
     ...createLoaders('app2'),
+  },
+  library: {
+    port: 3003,
+    name: 'library',
+    path: '/js/library',
+    ...createLoaders('@library'),
   }
 }
 

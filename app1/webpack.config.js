@@ -10,7 +10,8 @@ module.exports = (env) => buildWebpackConfig({
   package,
   module: modules.app1,
   remotes: {
-    ...modules.app2.remote(env)
+    ...modules.library.remote(env),
+    ...modules.app2.remote(env),
   },
   plugins: [
     new HtmlWebpackPlugin({

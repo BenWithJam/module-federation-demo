@@ -34,6 +34,18 @@ const buildWebpackConfig = ({ env, package, module, remotes = {}, exposes = unde
             },
           ]
         },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'style-loader',
+              options: {
+                insert: require.resolve('utils/styleLoader'),
+              },
+            },
+            'css-loader',
+          ],
+        },
       ],
     },
     plugins: [
@@ -55,6 +67,10 @@ const buildWebpackConfig = ({ env, package, module, remotes = {}, exposes = unde
           'react-dom': {
             singleton: true,
             requiredVersion: package.dependencies['react-dom'],
+          },
+          'styled-components': {
+            singleton: true,
+            requiredVersion: package.dependencies['styled-components'],
           },
           '@emotion/cache': {
             singleton: true,

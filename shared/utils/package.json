@@ -3,6 +3,7 @@
   "exports": {
     "./modules": "./modules.js",
     "./remoteLoader": "./remoteLoader.js",
+    "./styleLoader": "./styleLoader.ts",
     "./webpack": "./webpack.js"
   },
   "devDependencies": {

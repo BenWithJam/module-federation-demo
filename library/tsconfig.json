@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "paths": {
+      "*": [
+        "./@mf-types/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

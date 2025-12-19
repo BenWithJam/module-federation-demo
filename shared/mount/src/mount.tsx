@@ -1,9 +1,11 @@
 import React from 'react';
+import { StyleSheetManager } from 'styled-components';
 
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 
 import { createRoot } from 'react-dom/client';
+import { createShadowStyles } from 'utils/styleLoader';
 
 const getShadowRoot = (parentId: string) => {
   const existingShadow = document.getElementById(parentId)?.shadowRoot;
@@ -36,6 +38,8 @@ export const mount = (parentId: string) => {
   // const root = createRoot(existingElement as HTMLElement);
   const root = createRoot(shadowRoot);
 
+  createShadowStyles(shadowRoot);
+
   const shadowrootCache = createCache({
     key: 'emotion',
     container: shadowRoot,
@@ -44,7 +48,13 @@ export const mount = (parentId: string) => {
 
   return {
     render: (app: React.ReactNode) => {
-      root.render(<CacheProvider value={shadowrootCache}>{app}</CacheProvider>);
+      root.render(
+        <CacheProvider value={shadowrootCache}>
+          <StyleSheetManager target={shadowRoot as any}>
+            {app}
+          </StyleSheetManager>
+        </CacheProvider>,
+      );
     },
   };
 };
