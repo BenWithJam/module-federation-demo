@@ -24,31 +24,7 @@ const remoteLoaderHelper = (remoteName, remoteModuleUrl) => {
 
 const remoteLoader = (remoteName, remoteModuleUrl) => `promise new Promise((${remoteLoaderHelper})('${remoteName}','${remoteModuleUrl}'))`;
 
-const localLoaderHelper = (remoteName, remoteModuleUrl) => {
-  return (resolve) => {
-    const path = remoteModuleUrl + '/remoteEntry.js' + (`?v=${window.MODERN_CONFIG.HASH || Date.now()}`);
-    const script = document.createElement('script');
-
-    script.src = path
-    script.onload = () => {
-      const proxy = {
-        get: (request) => window[remoteName].get(request),
-        init: (...arg) => {
-          try {
-            return window[remoteName].init(...arg)
-          } catch (e) {
-            console.log('remote container already initialized')
-          }
-        }
-      }
-      resolve(proxy)
-    }
-
-    document.head.appendChild(script);
-  }
-}
-
-const localLoader = (remoteName, remoteModuleUrl) => `promise new Promise((${localLoaderHelper})('${remoteName}','${remoteModuleUrl}'))`;
+const localLoader = (remoteName, port) => `${remoteName}@http://localhost:${port}/remoteEntry.js`
 
 const createLoaders = (key) => {
   return {
@@ -56,7 +32,7 @@ const createLoaders = (key) => {
       return {
         [key]: env.WEBPACK_BUILD
           ? remoteLoader(this.name, this.path)
-          : localLoader(this.name, `http://localhost:${this.port}`)
+          : localLoader(this.name, this.port)
       }
     }
   }

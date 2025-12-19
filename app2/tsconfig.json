@@ -1,12 +1,29 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
+    "target": "es2017",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "moduleResolution": "node",
+    "declaration": true,
     "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "jsx": "react",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["./@mf-types/*"]
-    },
-    "jsx": "react-jsx"
+      "*": [
+        "./@mf-types/*"
+      ]
+    }
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }
