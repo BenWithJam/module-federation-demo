@@ -7,7 +7,8 @@
     "start": "pnpm --filter typescript_* --parallel start",
     "build": "pnpm --filter typescript_* build",
     "serve": "pnpm --filter typescript_* --parallel serve",
-    "clean": "pnpm --filter typescript_* --parallel clean"
+    "clean": "pnpm --filter typescript_* --parallel clean",
+    "postinstall": "node shared/utils/addModules.js"
   },
   "devDependencies": {
     "axios": "1.13.2",

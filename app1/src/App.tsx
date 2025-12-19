@@ -1,6 +1,6 @@
 import React from 'react';
 
-// const RemoteButton = React.lazy(() => import('app2/Button'));
+import { Button as MuiButton } from '@mui/material';
 
 import RemoteButton from 'app2/Button';
 
@@ -9,6 +9,8 @@ const App = () => (
     <h1>Typescript</h1>
     <h2>App 1</h2>
     {/* <React.Suspense fallback="Loading Button"> */}
+    <MuiButton>Local Button</MuiButton>
+
     <RemoteButton size="large" />
     <br />
     <RemoteButton size="small" />

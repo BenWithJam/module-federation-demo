@@ -1,5 +1,4 @@
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('@module-federation/enhanced');
 const path = require('path');
 
@@ -47,20 +46,33 @@ const buildWebpackConfig = ({ env, package, module, remotes = {}, exposes = unde
           generateTypes: !env.WEBPACK_BUILD,
           consumeTypes: !env.WEBPACK_BUILD,
         },
-        shared: [
-          {
-            react: {
-              singleton: true,
-              requiredVersion: package.dependencies.react,
-            },
+        shared: {
+          ...package.dependencies,
+          react: {
+            singleton: true,
+            requiredVersion: package.dependencies.react,
           },
-          {
-            'react-dom': {
-              singleton: true,
-              requiredVersion: package.dependencies['react-dom'],
-            },
+          'react-dom': {
+            singleton: true,
+            requiredVersion: package.dependencies['react-dom'],
           },
-        ],
+          '@emotion/cache': {
+            singleton: true,
+            requiredVersion: package.dependencies['@emotion/cache']
+          },
+          '@emotion/react': {
+            singleton: true,
+            requiredVersion: package.dependencies['@emotion/react']
+          },
+          '@emotion/styled': {
+            singleton: true,
+            requiredVersion: package.dependencies['@emotion/styled']
+          },
+          '@mui/material': {
+            singleton: true,
+            requiredVersion: package.dependencies['@mui/material']
+          }
+        }
       }),
       ...plugins,
     ],

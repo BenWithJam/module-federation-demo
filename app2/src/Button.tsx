@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Button as MuiButton } from '@mui/material';
+
 type ButtonProps = {
   size: 'small' | 'large' | 'huge';
 };
@@ -16,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({ size }) => {
       </button>
     );
   }
-  return <button type="button">App 2 Small Button</button>;
+  return <MuiButton>Small Button</MuiButton>;
 };
 
 export default Button;
