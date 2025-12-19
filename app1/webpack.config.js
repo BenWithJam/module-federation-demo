@@ -1,12 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { FederatedTypesPlugin } = require('@module-federation/typescript');
-const { container } = require('webpack');
-const { ModuleFederationPlugin } = container;
+const { ModuleFederationPlugin } = require('@module-federation/enhanced');
 const path = require('path');
+
+const { localLoader } = require('utils/remoteLoader')
 
 const pkg = require('./package.json');
 
-module.exports = {
+module.exports = (env) => ({
   entry: './src/index',
   mode: 'development',
   devServer: {
@@ -22,71 +22,89 @@ module.exports = {
   },
   output: {
     publicPath: 'auto',
+    // publicPath: 'http://localhost:3001/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
+  watchOptions: {
+    ignored: ['**/node_modules', '**/@mf-types/**'],
+  },
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.tsx?$/,
+  //       loader: 'babel-loader',
+  //       exclude: /node_modules/,
+  //       options: {
+  //         presets: ['@babel/preset-react', '@babel/preset-typescript'],
+  //       },
+  //     },
+  //   ],
+  // },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: ['@babel/preset-react', '@babel/preset-typescript'],
-        },
+        exclude: /node_modules|mock\.ts$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              // transpileOnly: true
+            }
+          },
+          // {
+          //   loader: reactCompilerLoader,
+          //   options: defineReactCompilerLoaderOption({
+          //     target: '18'
+          //   })
+          // }
+        ]
       },
     ],
   },
   plugins: [
     // Define federation config once and use for both plugins
     new ModuleFederationPlugin({
+
       name: 'app1',
       filename: 'remoteEntry.js',
       remotes: {
         app2: 'app2@http://localhost:3002/remoteEntry.js',
+        // TODO: set this up for prod with remoteLoader as well
+        // app2: localLoader('app2', 'http://localhost:3002')
       },
-      shared: [
-        {
-          react: {
-            singleton: true,
-            requiredVersion: pkg.dependencies.react,
-          },
-        },
-        {
-          'react-dom': {
-            singleton: true,
-            requiredVersion: pkg.dependencies['react-dom'],
-          },
-        },
-      ],
+      // shared: {
+      //   // ...pkg.dependencies,
+      //   'react': {
+      //     eager: true,
+      //     singleton: true,
+      //     requiredVersion: '18.3.1'
+      //   },
+      //   'react-dom': {
+      //     eager: true,
+      //     singleton: true,
+      //     requiredVersion: '18.3.1'
+      //   }
+
+      // },
     }),
-    new FederatedTypesPlugin({
-      disableDownloadingRemoteTypes: true,
-      federationConfig: {
-        name: 'app1',
-        filename: 'remoteEntry.js',
-        remotes: {
-          app2: 'app2@http://localhost:3002/remoteEntry.js',
-        },
-        shared: [
-          {
-            react: {
-              singleton: true,
-              requiredVersion: pkg.dependencies.react,
-            },
-          },
-          {
-            'react-dom': {
-              singleton: true,
-              requiredVersion: pkg.dependencies['react-dom'],
-            },
-          },
-        ],
-      },
-    }),
+    // new FederatedTypesPlugin({
+    //   disableDownloadingRemoteTypes: env.WEBPACK_BUILD,
+    //   federationConfig: {
+    //     name: 'app1',
+    //     filename: 'remoteEntry.js',
+    //     remotes: {
+    //       app2: 'app2@http://localhost:3002/remoteEntry.js',
+    //     },
+    //     shared: {
+    //       ...pkg.dependencies
+    //     },
+    //   },
+    // }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
   ],
-};
+});

@@ -1,14 +1,14 @@
 {
-  "name": "utils",
+  "name": "mount",
   "exports": {
-    "./remoteLoader": "./remoteLoader.js",
-    "./runtimePlugin": "./runtimePlugin.js"
+    ".": "./index"
   },
   "devDependencies": {
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0"
   },
   "dependencies": {
+    "@tanstack/react-query": "5.51.16",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   }

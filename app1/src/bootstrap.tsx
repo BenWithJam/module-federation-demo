@@ -1,7 +1,15 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom/client';
+
+// import { mount } from 'mount';
 
 import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+// const { render } = mount('root');
+
+// render(<App />);
+
+import { createRoot } from 'react-dom/client';
+
+const container = document.getElementById('root');
+const root = createRoot(container as any);
 root.render(<App />);

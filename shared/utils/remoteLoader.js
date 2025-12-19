@@ -26,7 +26,7 @@ const remoteLoader = (remoteName, remoteModuleUrl) => `promise new Promise((${re
 
 const localLoaderHelper = (remoteName, remoteModuleUrl) => {
   return (resolve) => {
-    const path = remoteModuleUrl + '/remoteEntry.js' + (`?v=${window.MODERN_CONFIG.HASH || Date.now()}`);
+    const path = remoteModuleUrl + '/remoteEntry.js' + (`?v=${window?.MODERN_CONFIG?.HASH || Date.now()}`);
     const script = document.createElement('script');
 
     script.src = path
@@ -62,4 +62,4 @@ const createLoaders = (key) => {
   }
 }
 
-module.exports = { createLoaders };
+module.exports = { createLoaders, localLoader };
